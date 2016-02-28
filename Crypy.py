@@ -35,7 +35,7 @@ def retriVer(arg):
         else:
             x = arg
     except Exception as e:    #manage exceptions
-        print("[*] Wrong path or bad syntax for input, %s" % e)
+        print("[*] Wrong path or bad syntax for input, %s." % e)
         sys.exit(0)
     return x
 
@@ -57,10 +57,10 @@ def outPutter(arg, data):
             file.write("%s" %data)
             file.close
         print("[*] Writing Data to the output file!")
-        print("[*] File Saved Successfull at %s" %path)
+        print("[*] File Saved Successfull at %s." %path)
         
     except Exception as e:            #exception handler
-        print("[*] Wrong path or bad syntax for output, %s" % e)
+        print("[*] Wrong path or bad syntax for output, %s." % e)
         sys.exit(0)
         
 
@@ -70,16 +70,11 @@ def binIt(txt):
     b = bin(int(binascii.hexlify(txt), 16)) #convert string into hex by usign binascii module, convert it in an integer, and then into binary
     return b
 
-
-
-
 #convert in string bin sequences 
 def strBin(bin):
-    n = int(bin, 2)       #convert binary data in integer, and then unhexlify it
-    w = binascii.unhexlify('%x' %n)
+    n = (int(bin, 2)) 
+    w = binascii.unhexlify("%x" %n)
     return w
-
-
 
 #Varibili Base
 stringa = retriVer(args.string)
@@ -109,15 +104,17 @@ def decryPy(passw, data):
     global magicwrd                           #set global variables
     global chk
     global chk1
-    off = len(str((int(chk, 2) ^ int(chk1, 2))))  #calcolate offset usign the password
-    pax = bin(int(data[:off]) ^ int(passw, 2))    
-    x = strBin(pax)
-    if x == magicwrd:                             #check if it match
-        b = bin(int(data[off:]) ^ int(passw, 2))  
-        a = strBin(b)                             #decrypt  
-    else :
-        print("[*] Wrong Password Access Denied : Exiting")    #raise error and sys.exit
-        sys.exit(0)
+    try:
+        off = len(str((int(chk, 2) ^ int(chk1, 2))))  #calcolate offset usign the password
+        pax = bin(int(data[:off]) ^ int(passw, 2))    
+        if pax == chk1:                             #check if it match
+            b = bin(int(data[off:]) ^ int(passw, 2))  
+            a = strBin(b)                             #decrypt  
+        else:
+            print("[*] Wrong Password Access Denied : Exiting.")    #raise error and sys.exit
+            sys.exit(0)
+    except Exception as e:
+        print("[*] %s, probably whitespace known issue." %e)
     return a
 
 
@@ -131,7 +128,7 @@ def main():
             if args.output:
                 outPutter(args.output, decryPy(x, stringa)) #if it's specified an output start the routine
             else:
-                print("[*] Printing output to shell")       #if not specified print the output to the shell                
+                print("[*] Printing output to shell.")       #if not specified print the output to the shell                
                 print decryPy(x, stringa)
         else:
             print("[*] Starting encrypting process! Wait!") #if not true start encrypting routine 
@@ -140,7 +137,7 @@ def main():
             if args.output:
                 outPutter(args.output, cryPy(x, y))
             else:
-                print("[*] Printing output to shell")
+                print("[*] Printing output to shell.")
                 print cryPy(x, y)
     except:
         print(parser.usage)   #exception print usage
