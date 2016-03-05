@@ -138,14 +138,15 @@ checkpass()
 def main():
     global AES
     if AES:
-        print("[*] Starting ecnrypting process! Wait!")
         try:
             if args.decrypt:
+                print("[*] Starting decrypting process! Wait!")
                 if args.output:
                     aes.decrypt(args.string, passwd, args.output)
                 else:
                     aes.decrypt(args.string, passwd)  
             else:
+                print("[*] Starting encrypting process! Wait!")
                 if args.output:
                     aes.encrypt(args.string, passwd, args.output)
                 else:
