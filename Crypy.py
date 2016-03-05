@@ -31,7 +31,8 @@ def retriVer(arg):
                     elix.append(i)
             path = ''.join(elix)
             file = open(path)
-            x = file.read()    #read content from the file and return it
+            y = file.read()
+            x = y.strip()              #read content from the file and return it
         else:
             x = arg
     except Exception as e:    #manage exceptions
