@@ -576,7 +576,8 @@ def checkpass():
 #Main encrypting function
 def cryPy(passw, data):
     global magicwrd
-    chk = binIt(passw)
+    global passwd
+    chk = binIt(passwd)
     chk1 = binIt(magicwrd)
     try:    
         a = str((int(passw, 2) ^ int(data, 2)))   #calcolate an header for password check
@@ -591,7 +592,8 @@ def cryPy(passw, data):
 #Main decrypting function
 def decryPy(passw, data):
     global magicwrd                           #set global variables
-    chk = binIt(passw)
+    global passwd
+    chk = binIt(passwd)
     chk1 = binIt(magicwrd)
     try:
         off = len(str((int(chk, 2) ^ int(chk1, 2))))  #calcolate offset usign the password

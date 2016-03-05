@@ -4,16 +4,6 @@ A simple Python script for encrypting files
 
 root@kali:~/Crypy# python Crypy.py -h
 
- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
- @@*****************************************@@
- @@*  ######  ###### #   #  ######  #   #  *@@
- @@*  #       #    #  # #   #    #   # #   *@@
- @@*  #       ######   #    ######    #    *@@
- @@*  #       #  #     #    #         #    *@@
- @@*  ######  #   #    #    #         #    *@@
- @@*****************************************@@
- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 usage: Crypy.py [-h] [-p] [-o path] [-d | -e] String/Path Password
 
 Simple Python's script for Encrypting and Decrypting Data
