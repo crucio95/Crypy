@@ -4,7 +4,7 @@
 # http://brandon.sternefamily.net/files/mit-license.txt
 # Python AES implementation
 
-import sys, hashlib, string, getpass
+import sys, hashlib, string
 from copy import copy
 from random import randint
 
