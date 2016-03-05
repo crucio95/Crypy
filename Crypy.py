@@ -2,7 +2,7 @@ import binascii
 import argparse
 from getpass import getpass
 import sys
-from aes import *
+from module import aes
 
 #Display the banner
 with open("banner.txt") as f:
@@ -142,14 +142,14 @@ def main():
         try:
             if args.decrypt:
                 if args.output:
-                    decrypt(args.string, passwd, args.output)
+                    aes.decrypt(args.string, passwd, args.output)
                 else:
-                    decrypt(args.string, passwd)  
+                    aes.decrypt(args.string, passwd)  
             else:
                 if args.output:
-                    encrypt(args.string, passwd, args.output)
+                    aes.encrypt(args.string, passwd, args.output)
                 else:
-                    encrypt(args.string, passwd)
+                    aes.encrypt(args.string, passwd)
         except Exception as e:
             print e
         print("[*] File Saved Successfull at %s" %args.output)
