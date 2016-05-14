@@ -1,7 +1,9 @@
 from Tkinter import *
 from tkFileDialog import askopenfilename
+from module import aes, xor
 
-
+radice = Tk()
+radice.wm_title("Crypy")
 
 class Grafica:
 	def __init__(self, radice):
@@ -17,17 +19,17 @@ class Grafica:
 		options['parent'] = radice
 		options['title'] = 'Path to File'
 		
-		v = StringVar()
-		v.set("XOR")
-		x = IntVar()
-		x.set(1)
-		password = StringVar()
+		self.v = StringVar()
+		self.v.set("XOR")
+		self.x = BooleanVar()
+		self.x.set(1)
+		self.password = StringVar()
 			
 		MODES = [
-		("XOR", v, "XOR", LEFT),
-		("AES", v, "AES", LEFT),
-		("Encrypt", x, 1, RIGHT),
-		("Decrypt", x, 0, RIGHT),
+		("XOR", self.v, "XOR", LEFT),
+		("AES", self.v, "AES", LEFT),
+		("Encrypt", self.x, 1, RIGHT),
+		("Decrypt", self.x, 0, RIGHT),
 		]		
 	
 		self.pathrun = Frame(self.box)
@@ -46,15 +48,37 @@ class Grafica:
 			self.radio = Radiobutton(self.option, text = testo, variable = var, value = valore, indicatoron = 1)
 			self.radio.pack(side = giust)
 		self.desc = Label(self.option, text = "Enter a Password").pack(anchor = CENTER)
-		self.pas = Entry(self.option, textvariable = password, show = "*", relief = GROOVE).pack(anchor = CENTER)
-		self.runit = Button(self.bottom, text = "RUN IT", width = 40, height = 3).pack(anchor = CENTER, pady = "5m")
+		self.pas = Entry(self.option, textvariable = self.password, show = "*", relief = GROOVE).pack(anchor = CENTER)
+		self.runit = Button(self.bottom, text = "RUN IT", width = 40, height = 3, command = main).pack(anchor = CENTER, pady = "5m")
 	def Browse(self):
 		file = askopenfilename(**self.file_opt)
 		self.path.config(text = file)
 		self.path.pack()
 
+magicwrd = "magicwrd"
+def Datas(path):
+	try:
+		file = open(path, mode='r')
+		data = file.read()
+		datafix = data.strip()
+	except Exception as e:    #manage exceptions
+		print("[*] Wrong path or bad syntax for input, %s." % e)
+		sys.exit(0)
+	return datafix
 
-radice = Tk()
-radice.wm_title("Crypy")
+def main():
+	global magicwrd
+	path = grafica.path["text"]
+	if grafica.v.get() == "XOR":
+		if grafica.x.get():
+			pasb = xor.binIt(grafica.password.get())
+			data = xor.binIt(Datas(path))
+			xor.outPutter(path + "crypt", xor.cryPy(pasb, data, magicwrd))
+		else:
+			pasb = xor.binIt(grafica.password.get())
+			data = Datas(path)
+			xor.outPutter(path[:(len(path)-5)], xor.decryPy(pasb, data, magicwrd))
+	
+
 grafica = Grafica(radice)
 radice.mainloop()
