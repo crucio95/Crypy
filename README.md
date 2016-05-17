@@ -20,4 +20,6 @@ optional arguments:
 
 And That's All! Start Encrypting!
 
+Now with GUI and Windows versions too!!
+
 <a href="http://it.tinypic.com?ref=28j8a2r" target="_blank"><img src="http://i64.tinypic.com/28j8a2r.jpg" border="0" alt="Image and video hosting by TinyPic"></a>
