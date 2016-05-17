@@ -78,6 +78,11 @@ def main():
 			pasb = xor.binIt(grafica.password.get())
 			data = Datas(path)
 			xor.outPutter(path[:(len(path)-5)], xor.decryPy(pasb, data, magicwrd))
+	else:
+		if grafica.x.get():
+			aes.encrypt(path, grafica.password.get())
+		else:
+			aes.decrypt(path, grafica.password.get())
 	
 
 grafica = Grafica(radice)

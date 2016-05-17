@@ -86,9 +86,7 @@ def decryPy(passw, data, magicwrd):
     chk1 = binIt(magicwrd)
     try:
         off = len(str((int(passw, 2) ^ int(chk1, 2))))  #calcolate offset usign the password
-        print(off)
         pax = strBin(bin(int(data[:off]) ^ int(passw, 2)))    
-        print(pax)
         if pax == magicwrd:                             #check if it match
             b = bin(int(data[off:]) ^ int(passw, 2))  
             a = strBin(b)                             #decrypt  
